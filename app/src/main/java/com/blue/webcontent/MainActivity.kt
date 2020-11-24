@@ -2,7 +2,6 @@ package com.blue.webcontent
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +10,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
-import org.jsoup.select.Elements
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,13 +28,13 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-        getPhone()
+        getMerchant()
     }
 
 
     //借助Jsoup库解析内容
     // 如果解析用的比较多的话，可以写个通用方法。
-    private fun getPhone() {
+    private fun getMerchant() {
         Thread {
             //设置手机的useragent,不然访问的是电脑版
             val document = Jsoup.connect("http://m.liebiao.com/beijing/jiadianweixiu/").userAgent("Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko)").timeout(5000).get()
