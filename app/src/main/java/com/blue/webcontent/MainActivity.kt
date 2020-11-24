@@ -33,8 +33,12 @@ class MainActivity : AppCompatActivity() {
         getPhone()
     }
 
+
+    //借助Jsoup库解析内容
+    // 如果解析用的比较多的话，可以写个通用方法。
     private fun getPhone() {
         Thread {
+            //设置手机的useragent,不然访问的是电脑版
             val document = Jsoup.connect("http://m.liebiao.com/beijing/jiadianweixiu/").userAgent("Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko)").timeout(5000).get()
             val body = document.body()
             val list = body.getElementsByClass("main")
@@ -61,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
-    private fun getMerchantItem(element: Element): Merchant { 
+    private fun getMerchantItem(element: Element): Merchant {
         val merchant = Merchant()
         val cardElement = element.getElementsByClass("post-card-link")
         if (cardElement.isNotEmpty()) {
